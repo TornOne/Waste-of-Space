@@ -3,7 +3,52 @@ guid: 52797054aca493f28a5a3195639a5c07
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aluminium
+    second: {fileID: 2100000, guid: 9cad3555dee5a51a69098c5d073d0837, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Electric
+    second: {fileID: 2100000, guid: dbce0e45382cdc8e590665db8d45fc47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: cc2b646f683403c9f98a383b4548e227, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeavyMetal
+    second: {fileID: 2100000, guid: 80e17e5591f0535a6a2a86b12d0fd8ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reactor
+    second: {fileID: 2100000, guid: 1a392c16a2275e08e9eb446e04e6d256, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rubber
+    second: {fileID: 2100000, guid: 8e690a157d523746681e8de63abf15ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SpaceMaterial
+    second: {fileID: 2100000, guid: 8db8ec86713ee8a938e1074d1ff387ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SpaceWool
+    second: {fileID: 2100000, guid: 50892e21b123788ae91a6b93241614c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 2e11294dc98edbfa088e35436fb13c6e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
