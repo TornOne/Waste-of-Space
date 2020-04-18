@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour {
@@ -25,8 +26,8 @@ public class GridManager : MonoBehaviour {
 
 	public Vector2Int GetTileFromCursor() {
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-		Vector3 tileLoc = ray.GetPoint(-ray.origin.z / ray.direction.z);
+		Vector3 tileLoc = ray.GetPoint(ray.origin.y / -ray.direction.y);
 		Debug.Log(tileLoc);
-		return new Vector2Int((int)tileLoc.x, (int)tileLoc.y);
+		return new Vector2Int(Convert.ToInt32(tileLoc.x), Convert.ToInt32(tileLoc.z));
 	}
 }
