@@ -140,6 +140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePlaceDelay: 1
+  bounds:
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!114 &6741517064327307392
 MonoBehaviour:
   m_ObjectHideFlags: 0
