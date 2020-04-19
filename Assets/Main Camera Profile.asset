@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8503401927373067732
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 0
+  color:
+    overrideState: 1
+    value: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+  center:
+    overrideState: 0
+    value: {x: 0.5, y: 0.5}
+  intensity:
+    overrideState: 1
+    value: 0.586
+  smoothness:
+    overrideState: 1
+    value: 0.913
+  roundness:
+    overrideState: 1
+    value: 0.756
+  rounded:
+    overrideState: 1
+    value: 1
+  mask:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  opacity:
+    overrideState: 0
+    value: 1
 --- !u!114 &-1323438134598047644
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -63,6 +107,7 @@ MonoBehaviour:
   - {fileID: 4407740046941796190}
   - {fileID: 752882205092437609}
   - {fileID: -1323438134598047644}
+  - {fileID: -8503401927373067732}
 --- !u!114 &752882205092437609
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -84,7 +129,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.47
+    value: 1.64
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -165,7 +210,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 50.1
+    value: 73.9
   tint:
     overrideState: 0
     value: 0
@@ -176,17 +221,17 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   saturation:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: -11.4
   brightness:
     overrideState: 0
     value: 0
   postExposure:
     overrideState: 0
-    value: 0
+    value: 1.2
   contrast:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.6
   mixerRedOutRedIn:
     overrideState: 0
     value: -30
@@ -215,8 +260,8 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 0.982064, z: 0.995515, w: 0}
   gamma:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
