@@ -11,8 +11,7 @@ public class GridManager : MonoBehaviour {
 	float lastTilePlacedTime = 0;
 	public float tilePlaceDelay = 1;
 	Piece tileHeld;
-	Vector2Int lastCursorPos;
-	bool isValidPlacement;
+	public RectInt bounds = new RectInt(0, 0, 0, 0);
 
 	public Piece this[int x, int y] {
 		get => this[new Vector2Int(x, y)];
@@ -36,21 +35,14 @@ public class GridManager : MonoBehaviour {
 	void Update() {
 		if (tileHeld is null && Time.time - lastTilePlacedTime > tilePlaceDelay) {
 			tileHeld = PieceSpawner.instance.GetRandomPiece();
-			lastCursorPos = new Vector2Int(int.MinValue, int.MinValue); //Invalidate cursor position
 		}
 
 		Vector2Int cursorPos = GetTileFromCursor();
-		if (cursorPos != lastCursorPos) {
-			isValidPlacement = IsValidPlacement(tileHeld, cursorPos);
-		}
-
-		void PlaceOrDiscardTile() {
-			lastTilePlacedTime = Time.time;
-			lastCursorPos = new Vector2Int(int.MinValue, int.MinValue);
-			tileHeld = null;
-		}
+		bool isValidPlacement = IsValidPlacement(tileHeld, cursorPos);
 
 		if (tileHeld != null) {
+			tileHeld.transform.position = new Vector3(cursorPos.x, 0, cursorPos.y);
+
 			//Handle rotations
 			if (Input.GetButtonDown("Rotate Clockwise") || Input.GetAxisRaw("ScrollWheel") < 0) {
 				tileHeld.Rotate(clockwise: true);
@@ -61,22 +53,48 @@ public class GridManager : MonoBehaviour {
 			//Handle placement and discarding
 			if (Input.GetMouseButtonDown(0) && isValidPlacement) {
 				tileHeld.Place(cursorPos);
-				PlaceOrDiscardTile();
+				lastTilePlacedTime = Time.time;
+				tileHeld = null;
 			} else if (Input.GetMouseButtonDown(1)) {
 				Destroy(tileHeld.gameObject);
-				PlaceOrDiscardTile();
+				lastTilePlacedTime = Time.time;
+				tileHeld = null;
 			}
 		}
+	}
+
+	public void UpdateBounds() {
+		int minX = 0;
+		int maxX = 0;
+		int minY = 0;
+		int maxY = 0;
+
+		foreach (Vector2Int tileLoc in _tiles.Keys) {
+			if (tileLoc.x < minX) {
+				minX = tileLoc.x;
+			} else if (tileLoc.x > maxX) {
+				maxX = tileLoc.x;
+			}
+			if (tileLoc.y < minY) {
+				minY = tileLoc.y;
+			} else if (tileLoc.y > maxY) {
+				maxY = tileLoc.y;
+			}
+		}
+
+		bounds = new RectInt(minX, minY, maxX - minX, maxY - minY);
 	}
 
 	bool IsValidPlacement(Piece piece, Vector2Int tile) {
 		//Always valid if no piece selected
 		if (piece is null) {
+			Cursor.instance.UpdateCursor(tile, true, new bool[4] { false, false, false, false });
 			return true;
 		}
 
 		//Can't be occupied
 		if (this[tile] != null) {
+			Cursor.instance.UpdateCursor(tile, false, new bool[4] { false, false, false, false });
 			return false;
 		}
 
@@ -96,11 +114,9 @@ public class GridManager : MonoBehaviour {
 			}
 		}
 
-		//Also update visuals
-		tileHeld.transform.position = new Vector3(tile.x, 0, tile.y);
 		Cursor.instance.UpdateCursor(tile, hasValidConnector, invalidConnectors);
 
-		return hasValidConnector;
+		return hasValidConnector && !Array.Exists(invalidConnectors, x => x);
 	}
 
 	public Vector2Int GetTileFromCursor() {
