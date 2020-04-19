@@ -27,6 +27,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Hologram
+    second: {fileID: 2100000, guid: ab0028b0d64dfc2fdbb78e597d844a91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Reactor
     second: {fileID: 2100000, guid: 1a392c16a2275e08e9eb446e04e6d256, type: 2}
   - first:
