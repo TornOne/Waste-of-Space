@@ -30,7 +30,7 @@ public class Piece : MonoBehaviour {
 	}
 
 	public virtual void Rotate(bool clockwise) {
-		transform.Rotate(Vector3.down, clockwise ? 90 : -90);
+		transform.Rotate(Vector3.up, clockwise ? 90 : -90);
 		RotateSlots(hasConnector, clockwise);
 	}
 

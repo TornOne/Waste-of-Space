@@ -36,9 +36,9 @@ public class GridManager : MonoBehaviour {
 			tileHeld.transform.position = new Vector3(cursorPos.x, 0, cursorPos.y);
 
 			//Handle rotations
-			if (Input.GetAxisRaw("Rotation") > 0.5f || Input.GetAxisRaw("ScrollWheel") > 0) {
+			if (Input.GetButtonDown("Rotate Clockwise") || Input.GetAxisRaw("ScrollWheel") < 0) {
 				tileHeld.Rotate(clockwise: true);
-			} else if (Input.GetAxisRaw("Rotation") < -0.5f || Input.GetAxisRaw("ScrollWheel") < 0) {
+			} else if (Input.GetButtonDown("Rotate Counterclockwise") || Input.GetAxisRaw("ScrollWheel") > 0) {
 				tileHeld.Rotate(clockwise: false);
 			}
 
@@ -49,11 +49,12 @@ public class GridManager : MonoBehaviour {
 				tileHeld = null;
 			} else if (Input.GetMouseButtonDown(1)) {
 				Destroy(tileHeld.gameObject);
+				lastTilePlacedTime = Time.time;
 				tileHeld = null;
 			}
 		}
 
-		Debug.Log(GetTileFromCursor());
+		//Debug.Log(GetTileFromCursor());
 	}
 
 	bool IsValidPlacement(Piece piece, Vector2Int tile) {
