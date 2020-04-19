@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
 public class PieceSpawner : MonoBehaviour {
-	public GameObject deadEndModel, connectorModel, energyShieldModel, engineModel, reinforcedModel, turretModel;
+	public GameObject deadEndModel, connectorModel, energyShieldModel, engineModel, reinforcedModel, turretModel, reactorModel;
 	public Piece connector;
 	public EnergyShield energyShield;
 	public Engine engine;
 	public Reinforced reinforced;
 	public Turret turret;
+	public Reactor reactor;
 
 	int GetRandomDir(int excluding) {
 		int randomDir;
@@ -28,13 +29,35 @@ public class PieceSpawner : MonoBehaviour {
 
 	bool GetRandomBool() => Random.Range(0, 2) == 0;
 
-	#region Connector
-	Piece GetRandomConnector() {
+	void GetRandomUtilityPieceLayout(out bool[] hasConnector, out bool[] hasUtility) {
 		int connectorSlot = Random.Range(0, 4);
-		bool[] hasConnector = new bool[4];
+		int utilitySlot = GetRandomDir(connectorSlot);
+
+		hasConnector = new bool[4];
+		hasUtility = new bool[4];
+		hasConnector[connectorSlot] = true;
+		hasUtility[utilitySlot] = true;
+		foreach (int slot in GetRemainingDir(connectorSlot, utilitySlot)) {
+			int slotType = Random.Range(0, 3);
+			if (slotType == 1) {
+				hasConnector[slot] = true;
+			} else if (slotType == 3) {
+				hasUtility[slot] = true;
+			}
+		}
+	}
+
+	void GetRandomMidPieceLayout(out bool[] hasConnector) {
+		int connectorSlot = Random.Range(0, 4);
+		hasConnector = new bool[4];
 		for (int i = 0; i < 4; i++) {
 			hasConnector[i] = connectorSlot == i || GetRandomBool();
 		}
+	}
+
+	#region Connector
+	Piece GetRandomConnector() {
+		GetRandomMidPieceLayout(out bool[] hasConnector);
 		return CreateConnector(hasConnector);
 	}
 
@@ -68,22 +91,7 @@ public class PieceSpawner : MonoBehaviour {
 
 	#region Reinforced
 	Reinforced GetRandomReinforced() {
-		int connectorSlot = Random.Range(0, 4);
-		int reinforcedSlot = GetRandomDir(connectorSlot);
-
-		bool[] hasConnector = new bool[4];
-		bool[] hasReinforced = new bool[4];
-		hasConnector[connectorSlot] = true;
-		hasReinforced[reinforcedSlot] = true;
-		foreach (int slot in GetRemainingDir(connectorSlot, reinforcedSlot)) {
-			int slotType = Random.Range(0, 3);
-			if (slotType == 1) {
-				hasConnector[slot] = true;
-			} else if (slotType == 3) {
-				hasReinforced[slot] = true;
-			}
-		}
-
+		GetRandomUtilityPieceLayout(out bool[] hasConnector, out bool[] hasReinforced);
 		return CreateReinforced(hasConnector, hasReinforced);
 	}
 
@@ -94,6 +102,60 @@ public class PieceSpawner : MonoBehaviour {
 
 		for (int i = 0; i < 4; i++) {
 			Instantiate(hasReinforced[i] ? reinforcedModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+		}
+		return parent;
+	}
+	#endregion
+
+	#region Energy Shield
+	EnergyShield GetRandomEnergyShield() {
+		GetRandomUtilityPieceLayout(out bool[] hasConnector, out bool[] hasEnergyShield);
+		return CreateEnergyShield(hasConnector, hasEnergyShield);
+	}
+
+	EnergyShield CreateEnergyShield(bool[] hasConnector, bool[] hasEnergyShield) {
+		EnergyShield parent = Instantiate(energyShield);
+		parent.hasConnector = hasConnector;
+		parent.hasEnergyShield = hasEnergyShield;
+
+		for (int i = 0; i < 4; i++) {
+			Instantiate(hasEnergyShield[i] ? energyShieldModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+		}
+		return parent;
+	}
+	#endregion
+
+	#region Energy Shield
+	Turret GetRandomTurret() {
+		GetRandomUtilityPieceLayout(out bool[] hasConnector, out bool[] hasTurret);
+		return CreateTurret(hasConnector, hasTurret);
+	}
+
+	Turret CreateTurret(bool[] hasConnector, bool[] hasTurret) {
+		Turret parent = Instantiate(turret);
+		parent.hasConnector = hasConnector;
+		parent.hasTurret = hasTurret;
+
+		for (int i = 0; i < 4; i++) {
+			Instantiate(hasTurret[i] ? turretModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+		}
+		return parent;
+	}
+	#endregion
+
+	#region Reactor
+	Reactor GetRandomReactor() {
+		GetRandomMidPieceLayout(out bool[] hasConnector);
+		return CreateReactor(hasConnector);
+	}
+
+	Reactor CreateReactor(params bool[] hasConnector) {
+		Reactor parent = Instantiate(reactor);
+		parent.hasConnector = hasConnector;
+
+		Instantiate(reactorModel, parent.transform.position, Quaternion.Euler(-90, 0, 0)).transform.parent = parent.transform;
+		for (int i = 0; i < 4; i++) {
+			Instantiate(hasConnector[i] ? connectorModel : deadEndModel, parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}
