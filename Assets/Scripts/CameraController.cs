@@ -10,6 +10,6 @@ public class CameraController : MonoBehaviour {
 		Vector3 totalTranslate = new Vector3(1, 0, 1) * Input.GetAxisRaw("Horizontal") + new Vector3(-1, 0, 1) * Input.GetAxisRaw("Vertical");
 		transform.position += totalTranslate.normalized * moveSpeed * Time.deltaTime;
 
-		cam.orthographicSize = Mathf.Max(cam.orthographicSize - Input.GetAxisRaw("Zoom") * zoomSpeed * Time.deltaTime, 1);
+		cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - Input.GetAxisRaw("Zoom") * zoomSpeed * Time.deltaTime, 1, 20);
 	}
 }
