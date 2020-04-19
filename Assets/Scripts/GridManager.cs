@@ -36,9 +36,9 @@ public class GridManager : MonoBehaviour {
 			tileHeld.transform.position = new Vector3(cursorPos.x, 0, cursorPos.y);
 
 			//Handle rotations
-			if (Input.GetAxisRaw("Rotation") > 0.5f || Input.GetAxisRaw("ScrollWheel") > 0.5f) {
+			if (Input.GetAxisRaw("Rotation") > 0.5f || Input.GetAxisRaw("ScrollWheel") > 0) {
 				tileHeld.Rotate(clockwise: true);
-			} else if (Input.GetAxisRaw("Rotation") < -0.5f || Input.GetAxisRaw("ScrollWheel") < -0.5f) {
+			} else if (Input.GetAxisRaw("Rotation") < -0.5f || Input.GetAxisRaw("ScrollWheel") < 0) {
 				tileHeld.Rotate(clockwise: false);
 			}
 
@@ -83,7 +83,6 @@ public class GridManager : MonoBehaviour {
 	public Vector2Int GetTileFromCursor() {
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 		Vector3 tileLoc = ray.GetPoint(ray.origin.y / -ray.direction.y);
-		Debug.Log(tileLoc);
 		return new Vector2Int(Convert.ToInt32(tileLoc.x), Convert.ToInt32(tileLoc.z));
 	}
 }
