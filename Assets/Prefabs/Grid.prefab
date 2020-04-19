@@ -56,16 +56,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa46cbbb3ca9284cb97692f4140c0f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadEndModel: {fileID: 0}
-  connectorModel: {fileID: 0}
-  energyShieldModel: {fileID: 0}
-  engineModel: {fileID: 0}
-  reinforcedModel: {fileID: 0}
-  turretModel: {fileID: 0}
-  reactorModel: {fileID: 0}
-  connector: {fileID: 0}
-  energyShield: {fileID: 0}
-  engine: {fileID: 0}
-  reinforced: {fileID: 0}
-  turret: {fileID: 0}
-  reactor: {fileID: 0}
+  deadEndModel: {fileID: 5157038332904254535, guid: 72a08a22666da7a4e80f74216c42284b,
+    type: 3}
+  connectorModel: {fileID: 6950544447456193889, guid: 7c7f90b12cc6f1c409c8d5ceac737c89,
+    type: 3}
+  energyShieldModel: {fileID: 5348488579241072702, guid: 9fe4987b3f3b09543a5cff40c0471a80,
+    type: 3}
+  engineModel: {fileID: 6280042057769275970, guid: fa5101384acec5540b3b31cfa8dc8261,
+    type: 3}
+  reinforcedModel: {fileID: 6318026780288302926, guid: 7da2cb6d8040fd644ad5dc88c79b0e7c,
+    type: 3}
+  turretModel: {fileID: 5355321367326761995, guid: 4059c97657c80839396f10d856e9b112,
+    type: 3}
+  reactorModel: {fileID: 3734358164913909894, guid: ebc8e0bb1a2c3663497cbc8b883e3916,
+    type: 3}
+  connector: {fileID: 131379054241377325, guid: a2ac3de47b626cd4baf5cc4804f47a8b,
+    type: 3}
+  energyShield: {fileID: 1845239358513937313, guid: 4c6855ee8e1723b499b43273a192fcb1,
+    type: 3}
+  engine: {fileID: 7258054989355149685, guid: e6907608b2602994a9f8280fd5ce7b0a, type: 3}
+  reinforced: {fileID: 6276740338113491602, guid: c56273bc3c40b144786e70616e25e5c4,
+    type: 3}
+  turret: {fileID: 9212565677598216744, guid: 3daf55c64fe746b468bc3d9894444a15, type: 3}
+  reactor: {fileID: 6946106128081886624, guid: be87c9396154d3e49b1ba63b7b53ef50, type: 3}
