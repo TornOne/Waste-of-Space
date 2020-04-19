@@ -114,9 +114,9 @@ public class GridManager : MonoBehaviour {
 			}
 		}
 
-		Cursor.instance.UpdateCursor(tile, hasValidConnector, invalidConnectors);
-
-		return hasValidConnector && !Array.Exists(invalidConnectors, x => x);
+		bool isValid = hasValidConnector && !Array.Exists(invalidConnectors, x => x);
+		Cursor.instance.UpdateCursor(tile, isValid, invalidConnectors);
+		return isValid;
 	}
 
 	public Vector2Int GetTileFromCursor() {
