@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 public class PieceSpawner : MonoBehaviour {
+	public static PieceSpawner instance;
+
 	public GameObject deadEndModel, connectorModel, energyShieldModel, engineModel, reinforcedModel, turretModel, reactorModel;
 	public Piece connector;
 	public EnergyShield energyShield;
@@ -8,6 +10,8 @@ public class PieceSpawner : MonoBehaviour {
 	public Reinforced reinforced;
 	public Turret turret;
 	public Reactor reactor;
+
+	void Awake() => instance = this;
 
 	int GetRandomDir(int excluding) {
 		int randomDir;
@@ -125,7 +129,7 @@ public class PieceSpawner : MonoBehaviour {
 	}
 	#endregion
 
-	#region Energy Shield
+	#region Turret
 	Turret GetRandomTurret() {
 		GetRandomUtilityPieceLayout(out bool[] hasConnector, out bool[] hasTurret);
 		return CreateTurret(hasConnector, hasTurret);
