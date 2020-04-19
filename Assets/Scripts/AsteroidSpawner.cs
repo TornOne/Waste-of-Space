@@ -6,6 +6,7 @@ public class AsteroidSpawner : MonoBehaviour {
 	public GameObject[] asteroidModels;
 	public Asteroid asteroid;
 	public int spawnBufferWidth = 10;
+	public float minVelocity, maxVelocity, maxSpinVelocity;
 	public float asteroidsPerSecondSquared = 0.02f;
 
 	void Awake() => instance = this;
@@ -38,12 +39,12 @@ public class AsteroidSpawner : MonoBehaviour {
 			leftSide = true;
 		}
 
-		Vector3 velocity = new Vector3(leftSide ? Random.Range(0.1f, 1f) : -Random.Range(0.1f, 1f), 0, Random.Range(0.1f, 1f)).normalized;
+		Vector3 velocity = new Vector3(leftSide ? Random.Range(0.1f, 1f) : -Random.Range(0.1f, 1f), 0, -Random.Range(0.1f, 1f)).normalized * Random.Range(minVelocity, maxVelocity);
 
 		Asteroid asteroid =  Instantiate(this.asteroid, position, Quaternion.identity);
 		Instantiate(asteroidModels[Random.Range(0, asteroidModels.Length)], asteroid.transform);
 		asteroid.velocity = velocity;
-		asteroid.spinVelocity = Random.onUnitSphere;
+		asteroid.spinVelocity = Random.insideUnitSphere * maxSpinVelocity;
 		return asteroid;
 	}
 }
