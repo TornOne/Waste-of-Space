@@ -176,4 +176,4 @@ MonoBehaviour:
     type: 3}
   turret: {fileID: 9212565677598216744, guid: 3daf55c64fe746b468bc3d9894444a15, type: 3}
   reactor: {fileID: 6946106128081886624, guid: be87c9396154d3e49b1ba63b7b53ef50, type: 3}
-  core: {fileID: 0}
+  core: {fileID: 4041567342327444884, guid: f052bbbf2d300934e848003dd2d1b29e, type: 3}

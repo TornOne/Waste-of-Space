@@ -38,8 +38,8 @@ public class Piece : MonoBehaviour {
 	protected void RotateSlots(bool[] slots, bool clockwise) {
 		if (clockwise) {
 			bool temp = slots[3];
-			for (int dir = 0; dir < 3; dir++) {
-				slots[dir + 1] = slots[dir];
+			for (int dir = 3; dir > 0; dir--) {
+				slots[dir] = slots[dir - 1];
 			}
 			slots[0] = temp;
 		} else {

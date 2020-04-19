@@ -23,7 +23,7 @@ public class PieceSpawner : MonoBehaviour {
 	}
 
 	int[] GetRemainingDir(params int[] excluding) {
-		int[] remainingDir = new int[2];
+		int[] remainingDir = new int[4 - excluding.Length];
 		for (int i = 0, j = 0; i < 4; i++) {
 			if (!System.Array.Exists(excluding, x => x == i)) {
 				remainingDir[j++] = i;
@@ -46,7 +46,7 @@ public class PieceSpawner : MonoBehaviour {
 			int slotType = Random.Range(0, 3);
 			if (slotType == 1) {
 				hasConnector[slot] = true;
-			} else if (slotType == 3) {
+			} else if (slotType == 2) {
 				hasUtility[slot] = true;
 			}
 		}
@@ -168,6 +168,7 @@ public class PieceSpawner : MonoBehaviour {
 
 	public Core CreateCore() {
 		Core parent = Instantiate(core);
+		parent.hasConnector = new bool[4] { true, true, true, true };
 
 		Instantiate(coreModel, parent.transform.position, Quaternion.identity).transform.parent = parent.transform;
 		for (int i = 0; i < 4; i++) {

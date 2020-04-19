@@ -71,7 +71,7 @@ public class GridManager : MonoBehaviour {
 		//Connectors must match
 		bool hasValidConnector = false;
 		for (int dir = 0; dir < 4; dir++) {
-			Piece adjacent = tiles[tile + Piece.directions[dir]];
+			Piece adjacent = this[tile + Piece.directions[dir]];
 			if (adjacent is null) {
 				continue;
 			} else if (adjacent.hasConnector[(dir + 2) % 4] == piece.hasConnector[dir]) { //Both connectors either are or aren't
