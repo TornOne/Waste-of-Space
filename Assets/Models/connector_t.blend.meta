@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: EnergyShield
+    second: {fileID: 2100000, guid: 8ead24c3ed5192d83a6e3332f0812eb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: cc2b646f683403c9f98a383b4548e227, type: 2}
   - first:
