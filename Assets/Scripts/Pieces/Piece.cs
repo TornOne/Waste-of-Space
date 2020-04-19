@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour {
 	Vector2Int position;
-	int _health;
+	[SerializeField]
+	int _health = 2;
 	public int Health {
 		get => _health;
 		set {
@@ -13,13 +14,14 @@ public class Piece : MonoBehaviour {
 			}
 		}
 	}
-	public int damageReceived = 1;
+	public int connectorDamageReceived = 2;
+	public int deadEndDamageReceived = 1;
 	public bool[] hasConnector; //up, right, down, left
 
 	static readonly Vector2Int[] directions = new Vector2Int[4] { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
 	public static int DirectionIndex(Vector2Int direction) => Array.IndexOf(directions, direction);
 
-	public virtual void GetHit() => Health -= damageReceived;
+	public virtual void GetHit(int direction) => Health -= hasConnector[direction] ? connectorDamageReceived : deadEndDamageReceived;
 
 	void Destroy() {
 		//TODO: Remove piece and everything no longer connected to the core and make appropriate calculative adjustments
