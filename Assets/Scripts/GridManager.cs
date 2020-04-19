@@ -24,7 +24,12 @@ public class GridManager : MonoBehaviour {
 
 	void Awake() => instance = this;
 
-	void Start() => cam = Camera.main;
+	void Start() {
+		cam = Camera.main;
+		Core core = PieceSpawner.instance.CreateCore();
+		core.transform.position = Vector3.zero;
+		core.Place(Vector2Int.zero);
+	}
 
 	void Update() {
 		if (tileHeld is null && Time.time - lastTilePlacedTime > tilePlaceDelay) {

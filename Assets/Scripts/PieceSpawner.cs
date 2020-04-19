@@ -3,13 +3,14 @@
 public class PieceSpawner : MonoBehaviour {
 	public static PieceSpawner instance;
 
-	public GameObject deadEndModel, connectorModel, energyShieldModel, engineModel, reinforcedModel, turretModel, reactorModel;
+	public GameObject deadEndModel, connectorModel, energyShieldModel, engineModel, reinforcedModel, turretModel, reactorModel, coreModel;
 	public Piece connector;
 	public EnergyShield energyShield;
 	public Engine engine;
 	public Reinforced reinforced;
 	public Turret turret;
 	public Reactor reactor;
+	public Core core;
 
 	void Awake() => instance = this;
 
@@ -79,7 +80,7 @@ public class PieceSpawner : MonoBehaviour {
 	#region Engine
 	Engine GetRandomEngine() {
 		int connectorSlot = GetRandomDir(2);
-		return CreateEngine(connectorSlot == 0 || GetRandomBool(), connectorSlot == 1 || GetRandomBool(), false, connectorSlot == 2 || GetRandomBool());
+		return CreateEngine(connectorSlot == 0 || GetRandomBool(), connectorSlot == 1 || GetRandomBool(), false, connectorSlot == 3 || GetRandomBool());
 	}
 
 	Engine CreateEngine(params bool[] hasConnector) {
@@ -157,13 +158,23 @@ public class PieceSpawner : MonoBehaviour {
 		Reactor parent = Instantiate(reactor);
 		parent.hasConnector = hasConnector;
 
-		Instantiate(reactorModel, parent.transform.position, Quaternion.Euler(-90, 0, 0)).transform.parent = parent.transform;
+		Instantiate(reactorModel, parent.transform.position, Quaternion.identity).transform.parent = parent.transform;
 		for (int i = 0; i < 4; i++) {
 			Instantiate(hasConnector[i] ? connectorModel : deadEndModel, parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}
 	#endregion
+
+	public Core CreateCore() {
+		Core parent = Instantiate(core);
+
+		Instantiate(coreModel, parent.transform.position, Quaternion.identity).transform.parent = parent.transform;
+		for (int i = 0; i < 4; i++) {
+			Instantiate(connectorModel, parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
+		}
+		return parent;
+	}
 
 	public Piece GetRandomPiece() {
 		float random = Random.Range(0f, 6f);

@@ -26,6 +26,7 @@ public class Piece : MonoBehaviour {
 	//Actually start functioning
 	public virtual void Place(Vector2Int position) {
 		this.position = position;
+		GridManager.instance[position] = this;
 		//TODO: Actually start functioning
 	}
 
