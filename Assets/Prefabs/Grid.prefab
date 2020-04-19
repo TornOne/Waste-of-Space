@@ -166,7 +166,7 @@ MonoBehaviour:
     type: 3}
   reactorModel: {fileID: 3734358164913909894, guid: ebc8e0bb1a2c3663497cbc8b883e3916,
     type: 3}
-  coreModel: {fileID: 0}
+  coreModel: {fileID: 21616647489754777, guid: 4754f23ac7fa9c12d8e3dbd7731f0c1b, type: 3}
   connector: {fileID: 131379054241377325, guid: a2ac3de47b626cd4baf5cc4804f47a8b,
     type: 3}
   energyShield: {fileID: 1845239358513937313, guid: 4c6855ee8e1723b499b43273a192fcb1,
