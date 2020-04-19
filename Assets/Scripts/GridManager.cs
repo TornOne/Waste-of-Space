@@ -35,6 +35,14 @@ public class GridManager : MonoBehaviour {
 			Vector2Int cursorPos = GetTileFromCursor();
 			tileHeld.transform.position = new Vector3(cursorPos.x, 0, cursorPos.y);
 
+			//Handle rotations
+			if (Input.GetAxisRaw("Rotation") > 0.5f || Input.GetAxisRaw("ScrollWheel") > 0.5f) {
+				tileHeld.Rotate(clockwise: true);
+			} else if (Input.GetAxisRaw("Rotation") < -0.5f || Input.GetAxisRaw("ScrollWheel") < -0.5f) {
+				tileHeld.Rotate(clockwise: false);
+			}
+
+			//Handle placement and discarding
 			if (Input.GetMouseButtonDown(0) && IsValidPlacement(tileHeld, cursorPos)) {
 				tileHeld.Place(cursorPos);
 				lastTilePlacedTime = Time.time;

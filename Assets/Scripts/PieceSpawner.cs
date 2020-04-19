@@ -70,7 +70,7 @@ public class PieceSpawner : MonoBehaviour {
 		parent.hasConnector = hasConnector;
 
 		for (int i = 0; i < 4; i++) {
-			Instantiate(hasConnector[i] ? connectorModel : deadEndModel, parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+			Instantiate(hasConnector[i] ? connectorModel : deadEndModel, parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}
@@ -87,7 +87,7 @@ public class PieceSpawner : MonoBehaviour {
 		parent.hasConnector = hasConnector;
 
 		for (int i = 0; i < 4; i++) {
-			Instantiate(i == 2 ? engineModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+			Instantiate(i == 2 ? engineModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}
@@ -105,7 +105,7 @@ public class PieceSpawner : MonoBehaviour {
 		parent.hasReinforced = hasReinforced;
 
 		for (int i = 0; i < 4; i++) {
-			Instantiate(hasReinforced[i] ? reinforcedModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+			Instantiate(hasReinforced[i] ? reinforcedModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}
@@ -123,7 +123,7 @@ public class PieceSpawner : MonoBehaviour {
 		parent.hasEnergyShield = hasEnergyShield;
 
 		for (int i = 0; i < 4; i++) {
-			Instantiate(hasEnergyShield[i] ? energyShieldModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+			Instantiate(hasEnergyShield[i] ? energyShieldModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}
@@ -141,7 +141,7 @@ public class PieceSpawner : MonoBehaviour {
 		parent.hasTurret = hasTurret;
 
 		for (int i = 0; i < 4; i++) {
-			Instantiate(hasTurret[i] ? turretModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+			Instantiate(hasTurret[i] ? turretModel : (hasConnector[i] ? connectorModel : deadEndModel), parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}
@@ -159,7 +159,7 @@ public class PieceSpawner : MonoBehaviour {
 
 		Instantiate(reactorModel, parent.transform.position, Quaternion.Euler(-90, 0, 0)).transform.parent = parent.transform;
 		for (int i = 0; i < 4; i++) {
-			Instantiate(hasConnector[i] ? connectorModel : deadEndModel, parent.transform.position, Quaternion.Euler(-90, 90 * i, 0)).transform.parent = parent.transform;
+			Instantiate(hasConnector[i] ? connectorModel : deadEndModel, parent.transform.position, Quaternion.Euler(0, 90 * i, 0)).transform.parent = parent.transform;
 		}
 		return parent;
 	}

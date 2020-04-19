@@ -6,4 +6,9 @@
 		//TODO: Energy calculations
 		Health -= hasEnergyShield[direction] ? disabledEnergyShieldDamageReceived : (hasConnector[direction] ? connectorDamageReceived : deadEndDamageReceived);
 	}
+
+	public override void Rotate(bool clockwise) {
+		base.Rotate(clockwise);
+		RotateSlots(hasEnergyShield, clockwise);
+	}
 }

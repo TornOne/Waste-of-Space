@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class Piece : MonoBehaviour {
-	Vector2Int position;
+	protected Vector2Int position;
 	[SerializeField]
 	int _health = 2;
 	public int Health {
@@ -27,6 +27,27 @@ public class Piece : MonoBehaviour {
 	public virtual void Place(Vector2Int position) {
 		this.position = position;
 		//TODO: Actually start functioning
+	}
+
+	public virtual void Rotate(bool clockwise) {
+		transform.Rotate(Vector3.down, clockwise ? 90 : -90);
+		RotateSlots(hasConnector, clockwise);
+	}
+
+	protected void RotateSlots(bool[] slots, bool clockwise) {
+		if (clockwise) {
+			bool temp = slots[3];
+			for (int dir = 0; dir < 3; dir++) {
+				slots[dir + 1] = slots[dir];
+			}
+			slots[0] = temp;
+		} else {
+			bool temp = slots[0];
+			for (int dir = 0; dir < 3; dir++) {
+				slots[dir] = slots[dir + 1];
+			}
+			slots[3] = temp;
+		}
 	}
 
 	void Destroy() {
