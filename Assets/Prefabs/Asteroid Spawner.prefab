@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidModels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7582374047317215709, guid: 6ebd8033f86285bba8839051ea0a7efd, type: 3}
+  - {fileID: 7950973768486382430, guid: 14a580c52fd1724e1b33bf76b7ec8337, type: 3}
+  - {fileID: 99996283951451467, guid: b5ef35b0e34e8311599387de062b56d8, type: 3}
   asteroid: {fileID: 3158688722562076563, guid: 2577e05f809fde049909e4832f5b67c1,
     type: 3}
   spawnBufferWidth: 10
+  asteroidsPerSecondSquared: 0.02
