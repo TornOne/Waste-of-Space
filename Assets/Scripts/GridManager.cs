@@ -20,7 +20,20 @@ public class GridManager : MonoBehaviour {
 
 	public Piece this[Vector2Int vec] {
 		get => _tiles.TryGetValue(vec, out Piece value) ? value : null;
-		set => _tiles[vec] = value;
+		set {
+			_tiles[vec] = value;
+
+			//Update bounds fast
+			if (vec.x < bounds.xMin) {
+				bounds = new RectInt(vec.x, bounds.yMin, bounds.width + 1, bounds.height);
+			} else if (vec.x > bounds.xMax) {
+				bounds = new RectInt(bounds.xMin, bounds.yMin, bounds.width + 1, bounds.height);
+			} else if (vec.y < bounds.yMin) {
+				bounds = new RectInt(bounds.xMin, vec.y, bounds.width, bounds.height + 1);
+			} else if (vec.y > bounds.yMax) {
+				bounds = new RectInt(bounds.xMin, bounds.yMin, bounds.width, bounds.height + 1);
+			}
+		}
 	}
 
 	void Awake() => instance = this;
@@ -60,6 +73,15 @@ public class GridManager : MonoBehaviour {
 				lastTilePlacedTime = Time.time;
 				tileHeld = null;
 			}
+		}
+	}
+
+	public void RemovePiece(Vector2Int pieceLoc) {
+		_tiles.Remove(pieceLoc);
+
+		//Might have removed an edge piece
+		if (pieceLoc.x == bounds.xMin || pieceLoc.x == bounds.xMax || pieceLoc.y == bounds.yMin || pieceLoc.y == bounds.yMax) {
+			UpdateBounds();
 		}
 	}
 

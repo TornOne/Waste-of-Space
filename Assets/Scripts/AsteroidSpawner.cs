@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour {
 	public static AsteroidSpawner instance;
@@ -8,6 +9,8 @@ public class AsteroidSpawner : MonoBehaviour {
 	public int spawnBufferWidth = 10;
 	public float minVelocity, maxVelocity, maxSpinVelocity;
 	public float asteroidsPerSecondSquared = 0.02f;
+
+	readonly HashSet<Asteroid> allAsteroids = new HashSet<Asteroid>();
 
 	void Awake() => instance = this;
 
@@ -45,6 +48,10 @@ public class AsteroidSpawner : MonoBehaviour {
 		Instantiate(asteroidModels[Random.Range(0, asteroidModels.Length)], asteroid.transform);
 		asteroid.velocity = velocity;
 		asteroid.spinVelocity = Random.insideUnitSphere * maxSpinVelocity;
+
+		allAsteroids.Add(asteroid);
 		return asteroid;
 	}
+
+	public void RemoveAsteroid(Asteroid asteroid) => allAsteroids.Remove(asteroid);
 }

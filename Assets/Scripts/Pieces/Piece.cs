@@ -20,6 +20,20 @@ public class Piece : MonoBehaviour {
 
 	public static readonly Vector2Int[] directions = new Vector2Int[4] { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
 	public static int DirectionIndex(Vector2Int direction) => Array.IndexOf(directions, direction);
+	public static int GetDirection(float deltaX, float deltaY) {
+		float angle = Mathf.Atan2(deltaY, deltaX);
+		if (angle < Mathf.PI * 0.25f) {
+			return 1;
+		} else if (angle < Mathf.PI * 0.75f) {
+			return 0;
+		} else if (angle < Mathf.PI * 1.25f) {
+			return 3;
+		} else if (angle < Math.PI * 1.75f) {
+			return 2;
+		} else {
+			return 1;
+		}
+	}
 
 	public virtual void GetHit(int direction) => Health -= hasConnector[direction] ? connectorDamageReceived : deadEndDamageReceived;
 
@@ -52,6 +66,8 @@ public class Piece : MonoBehaviour {
 	}
 
 	void Destroy() {
+		GridManager.instance.RemovePiece(position);
+		Destroy(gameObject); //Bad, don't do this
 		//TODO: Remove piece and everything no longer connected to the core and make appropriate calculative adjustments
 	}
 }
