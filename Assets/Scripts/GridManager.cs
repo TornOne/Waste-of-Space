@@ -53,6 +53,10 @@ public class GridManager : MonoBehaviour {
 		Vector2Int cursorPos = GetTileFromCursor();
 		bool isValidPlacement = IsValidPlacement(tileHeld, cursorPos);
 
+		if (Input.GetButtonDown("Remove") && _tiles.TryGetValue(cursorPos, out Piece piece) && !(piece is Core)) {
+			piece.Health -= 999999;
+		}
+
 		if (tileHeld != null) {
 			tileHeld.transform.position = new Vector3(cursorPos.x, 0, cursorPos.y);
 
