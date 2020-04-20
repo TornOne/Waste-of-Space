@@ -42,11 +42,13 @@ public class UIController : MonoBehaviour {
 		set => finalEnergy.text = $"Energy Produced: {value:0}";
 	}
 
+	public GameObject pauseMenu;
 	bool isPaused = false;
 	void Update() {
 		if (Input.GetButtonDown("Cancel")) {
 			isPaused = !isPaused;
 			Time.timeScale = isPaused ? 0 : 1;
+			pauseMenu.SetActive(isPaused);
 		}
 	}
 
