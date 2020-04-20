@@ -22,16 +22,16 @@ public class Piece : MonoBehaviour {
 	public static int DirectionIndex(Vector2Int direction) => Array.IndexOf(directions, direction);
 	public static int GetDirection(float deltaX, float deltaY) {
 		float angle = Mathf.Atan2(deltaY, deltaX);
-		if (angle < Mathf.PI * 0.25f) {
+		if (angle < Mathf.PI * -0.75f) {
+			return 3;
+		} else if (angle < Mathf.PI * -0.25f) {
+			return 2;
+		} else if (angle < Mathf.PI * 0.25f) {
 			return 1;
 		} else if (angle < Mathf.PI * 0.75f) {
 			return 0;
-		} else if (angle < Mathf.PI * 1.25f) {
-			return 3;
-		} else if (angle < Math.PI * 1.75f) {
-			return 2;
 		} else {
-			return 1;
+			return 3;
 		}
 	}
 
