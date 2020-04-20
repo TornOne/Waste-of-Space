@@ -39,7 +39,7 @@ public class Asteroid : MonoBehaviour {
 					Vector3 moveDelta = -velocity * Time.deltaTime;
 					dir = Piece.GetDirection(moveDelta.x, moveDelta.z);
 				}
-				Debug.Log($"Hit {piece} from {dir}");
+				Vector3 dTemp = -velocity * Time.deltaTime;
 				piece.GetHit(dir);
 				Explode();
 			}

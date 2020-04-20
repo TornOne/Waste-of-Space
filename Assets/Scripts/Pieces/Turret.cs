@@ -15,15 +15,6 @@ public class Turret : Piece {
 	void Awake() {
 		enabled = false;
 		allAsteroids = AsteroidSpawner.instance.allAsteroids;
-
-		for (int i = 0; i < 4; i++) {
-			foreach (Transform child in transform.GetChild(i)) {
-				if (child.CompareTag("TurretWall")) {
-					int dir = (int)(child.localRotation.eulerAngles.y / 90 + 4.5f) % 4;
-					turretModels[dir] = child.gameObject;
-				}
-			}
-		}
 	}
 
 	public override void Place(Vector2Int position) {
@@ -33,6 +24,9 @@ public class Turret : Piece {
 			foreach (Transform child2 in child) {
 				if (child2.CompareTag("TurretCoF")) {
 					child2.gameObject.SetActive(false);
+				} else if (child2.CompareTag("TurretWall")) {
+					int dir = (int)(child.rotation.eulerAngles.y / 90 + 4.5f) % 4;
+					turretModels[dir] = child2.gameObject;
 				}
 			}
 		}
@@ -69,6 +63,7 @@ public class Turret : Piece {
 			turretModels[i].transform.LookAt(target.transform);
 			//TODO: Spawn laser effect
 			Core.instance.Energy -= 1;
+			lastShot[i] = Time.time;
 			target.Explode();
 		}
 	}

@@ -47,3 +47,5 @@ MonoBehaviour:
   connectorDamageReceived: 1
   deadEndDamageReceived: 1
   hasConnector: 
+  score: 0
+  energyPerSecond: 1

@@ -8,7 +8,9 @@ public class EnergyShield : Piece {
 	bool isActive;
 	readonly List<GameObject> shieldModels = new List<GameObject>(3);
 
-	void Awake() {
+	public override void Place(Vector2Int position) {
+		base.Place(position);
+
 		foreach (Transform child in transform) {
 			foreach (Transform child2 in child) {
 				if (child2.CompareTag("EnergyWall")) {
@@ -16,10 +18,6 @@ public class EnergyShield : Piece {
 				}
 			}
 		}
-	}
-
-	public override void Place(Vector2Int position) {
-		base.Place(position);
 
 		isActive = Core.instance.Energy >= 1;
 		Core.instance.IsEnergyLow += SetShieldActive;

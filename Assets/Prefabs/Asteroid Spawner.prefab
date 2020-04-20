@@ -52,5 +52,5 @@ MonoBehaviour:
   spawnBufferWidth: 10
   minVelocity: 1
   maxVelocity: 5
-  maxSpinVelocity: 10
+  maxSpinVelocity: 90
   asteroidsPerSecondSquared: 0.02
