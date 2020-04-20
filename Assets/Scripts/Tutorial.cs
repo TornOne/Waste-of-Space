@@ -25,19 +25,32 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TutorialCoroutine(){
       yield return new WaitForSeconds(1);
+
       rotationTutorial.enabled = true;
       while(!Input.GetMouseButtonDown(0) && 
             !Input.GetMouseButtonDown(1)){
         yield return null;
       }
       rotationTutorial.enabled = false;
+
       yield return new WaitForSeconds(1);
+
       deleteTutorial.enabled = true;
       while(!Input.GetMouseButtonDown(0) && 
             !Input.GetMouseButtonDown(1)){
         yield return null;
       }
       deleteTutorial.enabled = false;
+
+      yield return new WaitForSeconds(1);
+
+      destroyTutorial.enabled = true;
+      while(!Input.GetMouseButtonDown(0) && 
+            !Input.GetMouseButtonDown(1)){
+        yield return null;
+      }
+      destroyTutorial.enabled = false;
+
       yield return new WaitForSeconds(3);
       cameraTutorial.enabled = true;
       yield return new WaitForSeconds(3);
