@@ -26,7 +26,7 @@ public class Core : Piece {
 			}
 
 			if (value > _energy) {
-				totalEnergyProduced += value;
+				totalEnergyProduced += value - _energy;
 			}
 
 			ui.Energy = value;

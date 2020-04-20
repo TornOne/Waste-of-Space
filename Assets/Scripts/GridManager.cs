@@ -7,6 +7,7 @@ public class GridManager : MonoBehaviour {
 	public static GridManager instance;
 	public Debris debris;
 	public AudioClip validPlaceSound, invalidPlaceSound;
+	AudioSource audioSource;
 
 	public readonly Dictionary<Vector2Int, Piece> tiles = new Dictionary<Vector2Int, Piece>();
 
@@ -42,6 +43,7 @@ public class GridManager : MonoBehaviour {
 
 	void Start() {
 		cam = Camera.main;
+		audioSource = Cursor.instance.GetComponent<AudioSource>();
 		Core core = PieceSpawner.instance.CreateCore();
 		core.transform.position = Vector3.zero;
 		core.Place(Vector2Int.zero);
@@ -72,13 +74,13 @@ public class GridManager : MonoBehaviour {
 			//Handle placement and discarding
 			if (Input.GetMouseButtonDown(0)) {
 				if (isValidPlacement) {
-					AudioSource.PlayClipAtPoint(validPlaceSound, tileHeld.transform.position);
+					audioSource.PlayOneShot(validPlaceSound);
 
 					tileHeld.Place(cursorPos);
 					lastTilePlacedTime = Time.time;
 					tileHeld = null;
 				} else {
-					AudioSource.PlayClipAtPoint(invalidPlaceSound, tileHeld.transform.position);
+					audioSource.PlayOneShot(invalidPlaceSound);
 				}
 			} else if (Input.GetMouseButtonDown(1)) {
 				Destroy(tileHeld.gameObject);
