@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour {
 	Camera cam;
-	public Debris debris;
 	public static GridManager instance;
+	public Debris debris;
+	public AudioClip validPlaceSound, invalidPlaceSound;
 
 	public readonly Dictionary<Vector2Int, Piece> tiles = new Dictionary<Vector2Int, Piece>();
 
 	float lastTilePlacedTime = 0;
 	public float tilePlaceDelay = 1;
-	Piece tileHeld;
+	public Piece tileHeld;
 	public RectInt bounds = new RectInt(0, 0, 0, 0);
 
 	public Piece this[int x, int y] {
@@ -69,10 +70,16 @@ public class GridManager : MonoBehaviour {
 			}
 
 			//Handle placement and discarding
-			if (Input.GetMouseButtonDown(0) && isValidPlacement) {
-				tileHeld.Place(cursorPos);
-				lastTilePlacedTime = Time.time;
-				tileHeld = null;
+			if (Input.GetMouseButtonDown(0)) {
+				if (isValidPlacement) {
+					AudioSource.PlayClipAtPoint(validPlaceSound, tileHeld.transform.position);
+
+					tileHeld.Place(cursorPos);
+					lastTilePlacedTime = Time.time;
+					tileHeld = null;
+				} else {
+					AudioSource.PlayClipAtPoint(invalidPlaceSound, tileHeld.transform.position);
+				}
 			} else if (Input.GetMouseButtonDown(1)) {
 				Destroy(tileHeld.gameObject);
 				lastTilePlacedTime = Time.time;
