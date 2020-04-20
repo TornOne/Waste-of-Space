@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour {
 	public Text scoreText;
 	public float Score {
-		set => scoreText.text = $"Score: {value:0}";
+		set => scoreText.text = value.ToString("0");
 	}
 
 	public Image energyBar;
