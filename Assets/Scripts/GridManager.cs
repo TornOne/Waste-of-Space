@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour {
 	Camera cam;
+	public Debris debris;
 	public static GridManager instance;
 
-	readonly Dictionary<Vector2Int, Piece> _tiles = new Dictionary<Vector2Int, Piece>();
+	public readonly Dictionary<Vector2Int, Piece> tiles = new Dictionary<Vector2Int, Piece>();
 
 	float lastTilePlacedTime = 0;
 	public float tilePlaceDelay = 1;
@@ -19,9 +20,9 @@ public class GridManager : MonoBehaviour {
 	}
 
 	public Piece this[Vector2Int vec] {
-		get => _tiles.TryGetValue(vec, out Piece value) ? value : null;
+		get => tiles.TryGetValue(vec, out Piece value) ? value : null;
 		set {
-			_tiles[vec] = value;
+			tiles[vec] = value;
 
 			//Update bounds fast
 			if (vec.x < bounds.xMin) {
@@ -53,7 +54,7 @@ public class GridManager : MonoBehaviour {
 		Vector2Int cursorPos = GetTileFromCursor();
 		bool isValidPlacement = IsValidPlacement(tileHeld, cursorPos);
 
-		if (Input.GetButtonDown("Remove") && _tiles.TryGetValue(cursorPos, out Piece piece) && !(piece is Core)) {
+		if (Input.GetButtonDown("Remove") && tiles.TryGetValue(cursorPos, out Piece piece) && !(piece is Core)) {
 			piece.Health -= 999999;
 		}
 
@@ -81,7 +82,7 @@ public class GridManager : MonoBehaviour {
 	}
 
 	public void RemovePiece(Vector2Int pieceLoc) {
-		_tiles.Remove(pieceLoc);
+		tiles.Remove(pieceLoc);
 
 		//Might have removed an edge piece
 		if (pieceLoc.x == bounds.xMin || pieceLoc.x == bounds.xMax || pieceLoc.y == bounds.yMin || pieceLoc.y == bounds.yMax) {
@@ -95,7 +96,7 @@ public class GridManager : MonoBehaviour {
 		int minY = 0;
 		int maxY = 0;
 
-		foreach (Vector2Int tileLoc in _tiles.Keys) {
+		foreach (Vector2Int tileLoc in tiles.Keys) {
 			if (tileLoc.x < minX) {
 				minX = tileLoc.x;
 			} else if (tileLoc.x > maxX) {
