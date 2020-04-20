@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 2988102615290235979, guid: 15462edaf5786c452b9330be841f3817,
     type: 3}
+  explosionSound: {fileID: 8300000, guid: bead167792a2c3104aa4689bbb923572, type: 3}
   velocity: {x: 0, y: 0, z: 0}
   spinVelocity: {x: 0, y: 0, z: 0}
   destroyBufferWidth: 10

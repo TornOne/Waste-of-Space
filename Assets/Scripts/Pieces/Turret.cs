@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Turret : Piece {
 	public LineRenderer laser;
+	public AudioClip laserSound;
+	AudioSource audioSource;
 
 	public bool[] hasTurret;
 	public int turretDamageReceived = 2;
@@ -17,6 +19,7 @@ public class Turret : Piece {
 	void Awake() {
 		enabled = false;
 		allAsteroids = AsteroidSpawner.instance.allAsteroids;
+		audioSource = Cursor.instance.GetComponent<AudioSource>();
 	}
 
 	public override void Place(Vector2Int position) {
@@ -64,6 +67,7 @@ public class Turret : Piece {
 			//Face asteroid and shoot
 			turretModels[i].transform.LookAt(target.transform);
 			LineRenderer laserBeam = Instantiate(laser);
+			audioSource.PlayOneShot(laserSound);
 			laserBeam.SetPosition(0, turretModels[i].transform.position);
 			laserBeam.SetPosition(1, target.transform.position);
 

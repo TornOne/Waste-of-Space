@@ -48,6 +48,7 @@ MonoBehaviour:
   deadEndDamageReceived: 1
   hasConnector: 
   laser: {fileID: 111529755122402688, guid: bc3b7b2e8ef77924aad4aa37f1c35c86, type: 3}
+  laserSound: {fileID: 8300000, guid: fabd36a86ef852b0a97c8483b7ab1e20, type: 3}
   hasTurret: 
   turretDamageReceived: 2
   shotCooldown: 1

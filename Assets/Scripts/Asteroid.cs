@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour {
 	public GameObject explosionPrefab;
+	public AudioClip explosionSound;
 
 	public Vector3 velocity;
 	public Vector3 spinVelocity;
@@ -51,6 +52,7 @@ public class Asteroid : MonoBehaviour {
 	}
 
 	public void Explode() {
+		Cursor.instance.GetComponent<AudioSource>().PlayOneShot(explosionSound);
 		Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 		Core.instance.asteroidsDestroyed++;
 		AsteroidSpawner.instance.RemoveAsteroid(this);
