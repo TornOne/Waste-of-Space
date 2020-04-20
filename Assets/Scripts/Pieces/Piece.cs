@@ -70,6 +70,10 @@ public class Piece : MonoBehaviour {
 		Dictionary<Vector2Int, Piece> originalTiles = GridManager.instance.tiles;
 		Dictionary<Vector2Int, Piece> disconnectedPieces = new Dictionary<Vector2Int, Piece>(originalTiles);
 
+		if (position == Vector2Int.zero) { //Is core, destroy everything
+			return disconnectedPieces.Values;
+		}
+
 		HashSet<Vector2Int> processed = new HashSet<Vector2Int> { Vector2Int.zero };
 		Stack<Vector2Int> toBeProcessed = new Stack<Vector2Int>();
 		toBeProcessed.Push(Vector2Int.zero);

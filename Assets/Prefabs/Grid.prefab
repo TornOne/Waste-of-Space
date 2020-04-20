@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debris: {fileID: 5494201301489714879, guid: d40a2e93cec4e464389ce11283c63a99, type: 3}
-  validPlaceSound: {fileID: 8300000, guid: d30c55e55d3ddb08da428079717bfa33, type: 3}
+  validPlaceSound: {fileID: 8300000, guid: febfaea2fb4dc3ff1871accf23ef9250, type: 3}
   invalidPlaceSound: {fileID: 8300000, guid: 18f1dcd44290a4580b9a8b6c68cdeff0, type: 3}
   tilePlaceDelay: 1
   tileHeld: {fileID: 0}
