@@ -1029,7 +1029,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1050,11 +1050,11 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -0.62690985
-          outSlope: -0.62690985
+          inSlope: 0.021944273
+          outSlope: 0.021944273
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.089030266
+          inWeight: 0.048894823
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
