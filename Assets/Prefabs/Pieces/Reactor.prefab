@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 2
   connectorDamageReceived: 2
-  damageReceived: 1
+  deadEndDamageReceived: 1
   hasConnector: 
+  energyPerSecond: 2
