@@ -67,7 +67,7 @@ public class Piece : MonoBehaviour {
 
 	void Destroy() {
 		GridManager.instance.RemovePiece(position);
-		Destroy(gameObject); //Bad, don't do this
+		Destroy(gameObject); //TODO: Destruction animations, falling down, followed by random spin and scale lerp to 0
 		//TODO: Remove piece and everything no longer connected to the core and make appropriate calculative adjustments
 	}
 }

@@ -48,4 +48,4 @@ MonoBehaviour:
   deadEndDamageReceived: 5
   hasConnector: 
   hasReinforced: 
-  reinforcedDamageReceived: 2
+  reinforcedDamageReceived: 1

@@ -54,9 +54,10 @@ public class PieceSpawner : MonoBehaviour {
 
 	void GetRandomMidPieceLayout(out bool[] hasConnector) {
 		int connectorSlot = Random.Range(0, 4);
+		int connectorSlot2 = GetRandomDir(connectorSlot);
 		hasConnector = new bool[4];
 		for (int i = 0; i < 4; i++) {
-			hasConnector[i] = connectorSlot == i || GetRandomBool();
+			hasConnector[i] = connectorSlot == i || connectorSlot2 == i || GetRandomBool();
 		}
 	}
 
