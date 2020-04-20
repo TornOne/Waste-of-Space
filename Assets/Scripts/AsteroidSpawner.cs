@@ -10,7 +10,7 @@ public class AsteroidSpawner : MonoBehaviour {
 	public float minVelocity, maxVelocity, maxSpinVelocity;
 	public float asteroidsPerSecondSquared = 0.02f;
 
-	readonly HashSet<Asteroid> allAsteroids = new HashSet<Asteroid>();
+	public readonly HashSet<Asteroid> allAsteroids = new HashSet<Asteroid>();
 
 	void Awake() => instance = this;
 

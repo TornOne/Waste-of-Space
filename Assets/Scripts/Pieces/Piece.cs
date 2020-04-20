@@ -35,14 +35,14 @@ public class Piece : MonoBehaviour {
 		}
 	}
 
-	public virtual void GetHit(int direction) => Health -= hasConnector[direction] ? connectorDamageReceived : deadEndDamageReceived;
-
 	//Actually start functioning
 	public virtual void Place(Vector2Int position) {
+		enabled = true;
 		this.position = position;
 		GridManager.instance[position] = this;
-		//TODO: Actually start functioning
 	}
+
+	public virtual void GetHit(int direction) => Health -= hasConnector[direction] ? connectorDamageReceived : deadEndDamageReceived;
 
 	public virtual void Rotate(bool clockwise) {
 		transform.Rotate(Vector3.up, clockwise ? 90 : -90);
@@ -66,8 +66,14 @@ public class Piece : MonoBehaviour {
 	}
 
 	void Destroy() {
-		GridManager.instance.RemovePiece(position);
-		Destroy(gameObject); //TODO: Destruction animations, falling down, followed by random spin and scale lerp to 0
+		Disable();
+		//TODO: Destruction animations, falling down, followed by random spin and scale lerp to 0
 		//TODO: Remove piece and everything no longer connected to the core and make appropriate calculative adjustments
+		Destroy(gameObject); //TODO: Not this straight away
+	}
+
+	protected virtual void Disable() {
+		GridManager.instance.RemovePiece(position);
+		enabled = false;
 	}
 }

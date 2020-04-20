@@ -41,11 +41,17 @@ public class Asteroid : MonoBehaviour {
 				}
 				Debug.Log($"Hit {piece} from {dir}");
 				piece.GetHit(dir);
-				Destroy(gameObject);
+				Explode();
 			}
 
 			//Finally update position
 			lastPos = newPos;
 		}
+	}
+
+	public void Explode() {
+		//TODO: Spawn particle effects or something
+		AsteroidSpawner.instance.RemoveAsteroid(this);
+		Destroy(gameObject);
 	}
 }
