@@ -98,7 +98,6 @@ public class Tutorial : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
       }
-      Debug.Log("Tutorial finished");
     }
 
     private static IEnumerator WaitForMouse(){
