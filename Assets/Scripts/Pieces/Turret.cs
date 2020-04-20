@@ -19,7 +19,8 @@ public class Turret : Piece {
 		for (int i = 0; i < 4; i++) {
 			foreach (Transform child in transform.GetChild(i)) {
 				if (child.CompareTag("TurretWall")) {
-					turretModels[i] = child.gameObject;
+					int dir = (int)(child.localRotation.eulerAngles.y / 90 + 4.5f) % 4;
+					turretModels[dir] = child.gameObject;
 				}
 			}
 		}
