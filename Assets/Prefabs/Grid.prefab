@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc88e287e4f12584ab3c85bf1a60fd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debris: {fileID: 5494201301489714879, guid: d40a2e93cec4e464389ce11283c63a99, type: 3}
   tilePlaceDelay: 1
   bounds:
     x: 0

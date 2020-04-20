@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Piece : MonoBehaviour {
@@ -65,11 +66,46 @@ public class Piece : MonoBehaviour {
 		}
 	}
 
+	ICollection<Piece> GetDisconnectedPieces() {
+		Dictionary<Vector2Int, Piece> originalTiles = GridManager.instance.tiles;
+		Dictionary<Vector2Int, Piece> disconnectedPieces = new Dictionary<Vector2Int, Piece>(originalTiles);
+
+		HashSet<Vector2Int> processed = new HashSet<Vector2Int> { Vector2Int.zero };
+		Stack<Vector2Int> toBeProcessed = new Stack<Vector2Int>();
+		toBeProcessed.Push(Vector2Int.zero);
+		disconnectedPieces.Remove(Vector2Int.zero);
+
+		while (toBeProcessed.Count > 0) {
+			Vector2Int processing = toBeProcessed.Pop();
+			Piece procPiece = originalTiles[processing];
+
+			for (int dir = 0; dir < 4; dir++) {
+				Vector2Int adjacent = processing + directions[dir];
+				if (!processed.Contains(adjacent) && originalTiles.TryGetValue(adjacent, out Piece adjPiece) && adjacent != position && procPiece.hasConnector[dir] && adjPiece.hasConnector[(dir + 2) % 4]) {
+					toBeProcessed.Push(adjacent);
+					processed.Add(adjacent);
+					disconnectedPieces.Remove(adjacent);
+				}
+			}
+		}
+
+		return disconnectedPieces.Values;
+	}
+
 	void Destroy() {
-		Disable();
-		//TODO: Destruction animations, falling down, followed by random spin and scale lerp to 0
-		//TODO: Remove piece and everything no longer connected to the core and make appropriate calculative adjustments
-		Destroy(gameObject); //TODO: Not this straight away
+		//Disable pieces and find debris center
+		ICollection<Piece> disconnectedPieces = GetDisconnectedPieces();
+		Vector2Int center = Vector2Int.zero;
+		foreach (Piece disconnectedPiece in disconnectedPieces) {
+			center += disconnectedPiece.position;
+			disconnectedPiece.Disable();
+		}
+
+		//Parent stuff to debris
+		Debris debris = Instantiate(GridManager.instance.debris, new Vector3((float)center.x / disconnectedPieces.Count, 0, (float)center.y / disconnectedPieces.Count), Quaternion.identity);
+		foreach (Piece disconnectedPiece in disconnectedPieces) {
+			disconnectedPiece.transform.parent = debris.transform;
+		}
 	}
 
 	protected virtual void Disable() {
