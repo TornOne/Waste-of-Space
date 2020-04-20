@@ -2,6 +2,8 @@
 using UnityEngine;
 
 public class Turret : Piece {
+	public LineRenderer laser;
+
 	public bool[] hasTurret;
 	public int turretDamageReceived = 2;
 	const float sqrRange = 4 * 4;
@@ -61,7 +63,10 @@ public class Turret : Piece {
 
 			//Face asteroid and shoot
 			turretModels[i].transform.LookAt(target.transform);
-			//TODO: Spawn laser effect
+			LineRenderer laserBeam = Instantiate(laser);
+			laserBeam.SetPosition(0, turretModels[i].transform.position);
+			laserBeam.SetPosition(1, target.transform.position);
+
 			Core.instance.Energy -= 1;
 			lastShot[i] = Time.time;
 			target.Explode();
