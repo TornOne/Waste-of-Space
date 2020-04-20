@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Core : Piece {
@@ -6,7 +7,6 @@ public class Core : Piece {
 
 	UIController ui;
 
-	//TODO: More stats (asteroids destroyed, blocks placed, energy produced)
 	float _score;
 	public float Score {
 		get => _score;
@@ -25,10 +25,17 @@ public class Core : Piece {
 				IsEnergyLow?.Invoke(false);
 			}
 
+			if (value > _energy) {
+				totalEnergyProduced += value;
+			}
+
 			ui.Energy = value;
 			_energy = value;
 		}
 	}
+	float totalEnergyProduced;
+	public int asteroidsDestroyed;
+	public int blocksPlaced;
 	public float energyPerSecond = 1;
 
 	public Action<bool> IsEnergyLow;
@@ -41,7 +48,21 @@ public class Core : Piece {
 	void Update() => Energy += energyPerSecond * Time.deltaTime;
 
 	protected override void Disable() {
+		StartCoroutine(GameOverRoutine());
+		base.Disable();
+	}
+
+	IEnumerator GameOverRoutine() {
 		float finalScore = Score;
-		//TODO: Initialize game over sequence
+		float finalEnergy = totalEnergyProduced;
+		int finalAsteroids = asteroidsDestroyed;
+		int finalBlocks = blocksPlaced;
+
+		yield return new WaitForSeconds(3);
+
+		ui.FinalScore = finalScore;
+		ui.FinalEnergy = finalEnergy;
+		ui.FinalAsteroids = finalAsteroids;
+		ui.FinalBlocks = finalBlocks;
 	}
 }

@@ -41,6 +41,7 @@ public class Piece : MonoBehaviour {
 		enabled = true;
 		this.position = position;
 		GridManager.instance[position] = this;
+		Core.instance.blocksPlaced++;
 	}
 
 	public virtual void GetHit(int direction) => Health -= hasConnector[direction] ? connectorDamageReceived : deadEndDamageReceived;

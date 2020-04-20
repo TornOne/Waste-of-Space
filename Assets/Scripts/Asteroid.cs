@@ -51,6 +51,7 @@ public class Asteroid : MonoBehaviour {
 
 	public void Explode() {
 		//TODO: Spawn particle effects or something
+		Core.instance.asteroidsDestroyed++;
 		AsteroidSpawner.instance.RemoveAsteroid(this);
 		Destroy(gameObject);
 	}

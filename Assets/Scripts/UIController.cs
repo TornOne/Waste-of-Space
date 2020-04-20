@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
@@ -16,4 +17,38 @@ public class UIController : MonoBehaviour {
 		Score = 0;
 		Energy = 0;
 	}
+
+	public GameObject gameOverScreen;
+	public Text finalScore;
+	public float FinalScore {
+		set {
+			gameOverScreen.SetActive(true);
+			finalScore.text = $"Distance Travelled: {value:0}";
+		}
+	}
+
+	public Text finalAsteroids;
+	public int FinalAsteroids {
+		set => finalAsteroids.text = $"Asteroids Exploded: {value}";
+	}
+
+	public Text finalBlocks;
+	public int FinalBlocks {
+		set => finalBlocks.text = $"Blocks Placed: {value}";
+	}
+
+	public Text finalEnergy;
+	public float FinalEnergy {
+		set => finalEnergy.text = $"Energy Produced: {value:0}";
+	}
+
+	bool isPaused = false;
+	void Update() {
+		if (Input.GetButtonDown("Cancel")) {
+			isPaused = !isPaused;
+			Time.timeScale = isPaused ? 0 : 1;
+		}
+	}
+
+	public void LoadScene(int sceneNumber) => SceneManager.LoadScene(sceneNumber);
 }
