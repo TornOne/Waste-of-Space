@@ -175,12 +175,12 @@ PrefabInstance:
     - target: {fileID: 7066627388868182404, guid: 0ad9e4aa6a9b6338aac9abc396c014db,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7066627388868182404, guid: 0ad9e4aa6a9b6338aac9abc396c014db,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -30
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 7066627388868182404, guid: 0ad9e4aa6a9b6338aac9abc396c014db,
         type: 3}
