@@ -4,8 +4,17 @@ using UnityEngine;
 public class Core : Piece {
 	public static Core instance;
 
+	UIController ui;
+
 	//TODO: More stats (asteroids destroyed, blocks placed, energy produced)
-	public float score = 0;
+	float _score;
+	public float Score {
+		get => _score;
+		set {
+			ui.Score = value;
+			_score = value;
+		}
+	}
 	float _energy;
 	public float Energy {
 		get => _energy;
@@ -16,6 +25,7 @@ public class Core : Piece {
 				IsEnergyLow?.Invoke(false);
 			}
 
+			ui.Energy = value;
 			_energy = value;
 		}
 	}
@@ -23,12 +33,15 @@ public class Core : Piece {
 
 	public Action<bool> IsEnergyLow;
 
-	void Awake() => instance = this;
+	void Awake() {
+		instance = this;
+		ui = FindObjectOfType<UIController>();
+	}
 
 	void Update() => Energy += energyPerSecond * Time.deltaTime;
 
 	protected override void Disable() {
-		float finalScore = score;
+		float finalScore = Score;
 		//TODO: Initialize game over sequence
 	}
 }

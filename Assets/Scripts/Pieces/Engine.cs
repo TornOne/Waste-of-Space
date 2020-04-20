@@ -9,7 +9,7 @@ public class Engine : Piece {
 		float energyCost = energyPerSecond * Time.deltaTime;
 		if (Core.instance.Energy >= energyCost) {
 			Core.instance.Energy -= energyCost;
-			Core.instance.score += energyCost;
+			Core.instance.Score += energyCost;
 		}
 	}
 
