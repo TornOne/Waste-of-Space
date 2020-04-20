@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2988102615290235982}
   - component: {fileID: 2988102615290235981}
   - component: {fileID: 2988102615290235980}
+  - component: {fileID: 7296116377157329666}
   m_Layer: 0
   m_Name: Rock Collision
   m_TagString: Untagged
@@ -25,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2988102615290235979}
-  m_LocalRotation: {x: -0.35355347, y: -0.35355338, z: -0.14644662, w: 0.8535535}
-  m_LocalPosition: {x: 12.585418, y: 7.456753, z: -10.764748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2988102615290235981
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4813,3 +4814,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 8076971328543133373, guid: 52797054aca493f28a5a3195639a5c07, type: 3}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7296116377157329666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2988102615290235979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29dd4482c59d96547ae802691e360498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
