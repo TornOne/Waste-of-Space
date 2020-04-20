@@ -2,6 +2,8 @@
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour {
+	public GameObject explosionPrefab;
+
 	public Vector3 velocity;
 	public Vector3 spinVelocity;
 	public int destroyBufferWidth = 10;
@@ -50,7 +52,7 @@ public class Asteroid : MonoBehaviour {
 	}
 
 	public void Explode() {
-		//TODO: Spawn particle effects or something
+		Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 		Core.instance.asteroidsDestroyed++;
 		AsteroidSpawner.instance.RemoveAsteroid(this);
 		Destroy(gameObject);

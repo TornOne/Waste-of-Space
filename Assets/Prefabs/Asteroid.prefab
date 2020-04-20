@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d02659e6637654cbc0100a55ad82c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 2988102615290235979, guid: 15462edaf5786c452b9330be841f3817,
+    type: 3}
   velocity: {x: 0, y: 0, z: 0}
   spinVelocity: {x: 0, y: 0, z: 0}
   destroyBufferWidth: 10
