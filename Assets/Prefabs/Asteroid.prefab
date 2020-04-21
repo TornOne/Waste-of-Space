@@ -48,4 +48,4 @@ MonoBehaviour:
   explosionSound: {fileID: 8300000, guid: bead167792a2c3104aa4689bbb923572, type: 3}
   velocity: {x: 0, y: 0, z: 0}
   spinVelocity: {x: 0, y: 0, z: 0}
-  destroyBufferWidth: 10
+  destroyBufferWidth: 25

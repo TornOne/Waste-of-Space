@@ -49,8 +49,8 @@ MonoBehaviour:
   - {fileID: 99996283951451467, guid: b5ef35b0e34e8311599387de062b56d8, type: 3}
   asteroid: {fileID: 3158688722562076563, guid: 2577e05f809fde049909e4832f5b67c1,
     type: 3}
-  spawnBufferWidth: 10
+  spawnBufferWidth: 20
   minVelocity: 1
   maxVelocity: 5
   maxSpinVelocity: 90
-  asteroidsPerSecondSquared: 0.02
+  asteroidsPerSecondSquared: 0.025
