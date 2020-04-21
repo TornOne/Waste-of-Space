@@ -53,4 +53,4 @@ MonoBehaviour:
   minVelocity: 1
   maxVelocity: 5
   maxSpinVelocity: 90
-  asteroidsPerSecondSquared: 0.025
+  asteroidsPerSecondSquared: 0.03
